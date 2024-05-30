@@ -1,6 +1,6 @@
 /*
 Posadas, Tracy Angelo T.
-BSCS - A121
+BSCS -  A121
 CS110-2: Discrete Structures 2
 9:30AM - 10:45AM (MWF)
 Week 8 (May 19-26, 2024)
