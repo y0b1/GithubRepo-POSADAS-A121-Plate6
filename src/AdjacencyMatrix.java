@@ -19,8 +19,10 @@ public class AdjacencyMatrix {
 
         for (int[] edge : edges) {
             int u = edge[0], v = edge[1];
-            adjacencyMatrix[u][v]++; // For undirected graph
-            adjacencyMatrix[v][u]++; // For undirected graph
+
+            // For undirected graph: increment both u->v and v->u because the edge (u, v) is bidirectional
+            adjacencyMatrix[u][v]++;
+            adjacencyMatrix[v][u]++;
         }
 
         return adjacencyMatrix;
@@ -28,11 +30,11 @@ public class AdjacencyMatrix {
 
     public static void main(String[] args) {
         List<List<int[]>> testCases = Arrays.asList(
-            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}),
-            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{0, 1}, new int[]{1, 2}),
-            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{1, 3}),
-            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{0, 0}), // Loop
-            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{1, 0}, new int[]{2, 0}) // Directed edge
+            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}), // Test case 1: Undirected graph without loops or multiple edges
+            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{0, 1}, new int[]{1, 2}), // Test case 2: Undirected graph with multiple edges
+            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{1, 3}), // Test case 3: Undirected graph with loops
+            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{0, 0}), // Test case 4: Undirected graph with directed edges (self-loop)
+            Arrays.asList(new int[]{0, 1}, new int[]{1, 2}, new int[]{2, 3}, new int[]{3, 0}, new int[]{1, 0}, new int[]{2, 0}) // Test case 5: Directed graph
         );
 
         for (int i = 0; i < testCases.size(); i++) {
@@ -41,7 +43,7 @@ public class AdjacencyMatrix {
 
             int[][] adjacencyMatrix = constructAdjacencyMatrix(edges, vertices);
 
-            System.out.println("Graph " + (i + 1) + " Adjacency Matrix:");
+            System.out.println("Test Case " + (i + 1) + " Adjacency Matrix:");
             for (int[] row : adjacencyMatrix) {
                 for (int cell : row) {
                     System.out.print(cell + " ");
